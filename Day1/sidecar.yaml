@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod
+  namespace: demo
+  labels:
+    app: hello
+spec:
+  containers:
+    - name: hello
+      image: nginx:1.27
+      ports:
+        - containerPort: 80
+    - name: app
+      image: busybox
+      command: ['sh', '-c', 'echo "App starting..."; sleep 60']
+
