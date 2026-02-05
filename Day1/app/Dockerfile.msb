@@ -1,5 +1,5 @@
 # ---------- Build stage ----------
-FROM python:3.12-slim AS builder
+FROM python:latest
 
 WORKDIR /build
 
@@ -7,7 +7,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
 
 # ---------- Runtime stage ----------
-FROM python:3.12-slim
+FROM gcr.io/distroless/static-debian13
 
 WORKDIR /app
 

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: init-demo
+spec:
+ volumes:
+ - name: shared-data
+   emptyDir: {}
+ initContainers:
+ - name: init-fetch
+   image: busybox
+   command: ['sh', '-c', 'echo "Initializing data..." > /data/info.txt']
+   volumeMounts:
+   - name: shared-data
+     mountPath: /data
+ containers:
+ - name: app
+   image: busybox
+   command: ['sh', '-c', 'echo "App starting..."; cat /data/info.txt; sleep 3600']
+   volumeMounts:
+   - name: shared-data
+     mountPath: /data
