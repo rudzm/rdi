@@ -19,6 +19,8 @@ metadata:
 spec:
   parentRefs:
   - name: prod-web
+  hostnames:
+  - "foo.example.com"
   rules:
   - backendRefs:
     - name: myapp-svc

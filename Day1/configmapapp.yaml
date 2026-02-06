@@ -31,4 +31,20 @@ spec:
    envFrom:
      - configMapRef:
          name: app-config
-
+---
+apiVersion: v1
+kind: Pod
+metadata:
+ name: cm-vol-demo
+spec:
+  containers:
+  - name: app
+    image: busybox
+    command: ["sh", "-c", "sleep 3600"]
+    volumeMounts:
+    - name: config-volume
+      mountPath: /home
+  volumes: 
+    - name: config-volume
+      configMap:
+        name: nginx-config

@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
  name: parallel-job
+ namespace: demo
 spec:
  completions: 4
  parallelism: 2
@@ -10,5 +11,5 @@ spec:
      containers:
      - name: worker
        image: busybox
-       command: ['sh', '-c', 'echo "Task $(hostname)"; sleep 3']
+       command: ['sh', '-c', 'echo "Task $(hostname)"; sleep 30']
      restartPolicy: Never
